@@ -1,0 +1,62 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.claude/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# Java / Maven
+target/
+build/
+out/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+.mvn/
+
+# Node / Angular
+node_modules/
+dist/
+dist-pwa/
+.angular/
+tmp/
+coverage/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Database dumps
+backup.sql
+*.dump
+
+# Backups & temp
+*.bkp
+.$*
+replacements.txt
+
+# Skills (outils locaux)
+agent-skills/

@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres:16
+    container_name: scriptum-db
+    environment:
+      POSTGRES_DB: scriptum
+      POSTGRES_USER: scriptum
+      POSTGRES_PASSWORD: scriptum
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: ./scriptum-api
+    container_name: scriptum-api
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - whisper
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/scriptum
+      SPRING_DATASOURCE_USERNAME: scriptum
+      SPRING_DATASOURCE_PASSWORD: scriptum
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      WHISPER_LOCAL_URL: http://whisper:5000
+    volumes:
+      - media_temp:/tmp/scriptum
+
+  whisper:
+    build: ./scriptum-whisper
+    container_name: scriptum-whisper
+    ports:
+      - "5000:5000"
+    volumes:
+      - media_temp:/tmp/scriptum
+
+  ui:
+    build: ./scriptum-ui
+    container_name: scriptum-ui
+    ports:
+      - "4200:4200"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+  media_temp:
