@@ -77,4 +77,9 @@ public class JobOrchestratorService {
             notificationService.publishProgress(job.getId(), JobStatus.FAILED, job.getProgress());
         }
     }
+
+    public TranscriptionJob getById(UUID id) {
+        return jobRepository.findById(id)
+                .orElseThrow(() -> new com.yann.scriptum.exception.ResourceNotFoundException("TranscriptionJob", id));
+    }
 }
