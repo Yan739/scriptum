@@ -11,6 +11,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.MultipartBodyBuilder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 import reactor.util.retry.Retry;
@@ -36,7 +37,6 @@ public class TranscriptionService {
     /** Transcrit l'audio d'un job en decoupant si necessaire et en reconstruisant le texte final. */
     public String transcribe(TranscriptionJob job, Path audioFile) {
         List<Path> chunkFiles = ffmpegService.splitIntoChunks(audioFile, MAX_CHUNK_DURATION_SECONDS);
-
         StringBuilder fullText = new StringBuilder();
 
         for (int i = 0; i < chunkFiles.size(); i++) {
@@ -49,13 +49,17 @@ public class TranscriptionService {
             chunk.setStatus(ChunkStatus.PROCESSING);
             chunkRepository.save(chunk);
 
-            String text = transcribeChunk(chunkFile);
+            TranscriptionResult result = transcribeChunk(chunkFile);
 
-            chunk.setText(text);
+            if (job.getSourceLanguage() == null && result.language() != null) {
+                job.setSourceLanguage(result.language());
+            }
+
+            chunk.setText(result.text());
             chunk.setStatus(ChunkStatus.DONE);
             chunkRepository.save(chunk);
 
-            fullText.append(text).append(" ");
+            fullText.append(result.text()).append(" ");
 
             int progress = (int) (((i + 1) / (double) chunkFiles.size()) * 100);
             notificationService.publishProgress(job.getId(), JobStatus.TRANSCRIBING, progress);
@@ -64,7 +68,7 @@ public class TranscriptionService {
         return fullText.toString().trim();
     }
 
-    private String transcribeChunk(Path chunkFile) {
+    private TranscriptionResult transcribeChunk(Path chunkFile) {
         try {
             return callGroqApi(chunkFile);
         } catch (Exception e) {
@@ -73,7 +77,7 @@ public class TranscriptionService {
         }
     }
 
-    private String callGroqApi(Path chunkFile) {
+    private TranscriptionResult callGroqApi(Path chunkFile) {
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder.part("file", new FileSystemResource(chunkFile));
         builder.part("model", "whisper-large-v3");
@@ -81,37 +85,34 @@ public class TranscriptionService {
         GroqTranscriptionResponse response = groqWebClient.post()
                 .uri("/audio/transcriptions")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
-                .body(org.springframework.web.reactive.function.BodyInserters.fromMultipartData(builder.build()))
+                .body(BodyInserters.fromMultipartData(builder.build()))
                 .retrieve()
                 .bodyToMono(GroqTranscriptionResponse.class)
-                .retryWhen(Retry.backoff(MAX_RETRIES, Duration.ofSeconds(2))
-                        .filter(this::isRetryable))
+                .retryWhen(Retry.backoff(MAX_RETRIES, Duration.ofSeconds(2)).filter(this::isRetryable))
                 .block();
 
-        return response != null ? response.text() : "";
+        return response != null
+                ? new TranscriptionResult(response.text(), response.language())
+                : new TranscriptionResult("", null);
     }
 
-    private String callLocalFallback(Path chunkFile) {
+    private TranscriptionResult callLocalFallback(Path chunkFile) {
         MultipartBodyBuilder builder = new MultipartBodyBuilder();
         builder.part("file", new FileSystemResource(chunkFile));
 
         GroqTranscriptionResponse response = whisperLocalWebClient.post()
                 .uri("/transcribe")
                 .contentType(MediaType.MULTIPART_FORM_DATA)
-                .body(org.springframework.web.reactive.function.BodyInserters.fromMultipartData(builder.build()))
+                .body(BodyInserters.fromMultipartData(builder.build()))
                 .retrieve()
                 .bodyToMono(GroqTranscriptionResponse.class)
                 .block();
 
-        return response != null ? response.text() : "";
+        return response != null
+                ? new TranscriptionResult(response.text(), response.language())
+                : new TranscriptionResult("", null);
     }
 
-    private boolean isRetryable(Throwable throwable) {
-        if (throwable instanceof WebClientResponseException ex) {
-            return ex.getStatusCode().is5xxServerError() || ex.getStatusCode().value() == 429;
-        }
-        return false;
-    }
-
-    private record GroqTranscriptionResponse(String text) {}
+    private record TranscriptionResult(String text, String language) {}
+    private record GroqTranscriptionResponse(String text, String language) {}
 }

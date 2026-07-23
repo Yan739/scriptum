@@ -62,7 +62,8 @@ public class JobOrchestratorService {
                 jobRepository.save(job);
                 notificationService.publishProgress(job.getId(), JobStatus.TRANSLATING, 100);
 
-                String translated = translationService.translate(rawText, job.getTargetLanguage());
+                String sourceLang = job.getSourceLanguage() != null ? job.getSourceLanguage() : "en";
+                String translated = translationService.translate(rawText, sourceLang, job.getTargetLanguage());
                 job.setTranslatedText(translated);
             }
 
