@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCRIPTUM - Transcript Viewer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        
+        .parchment-texture {
+            background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+            background-color: #fff8f0;
+        }
+
+        .typewriter-roll {
+            background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.05) 100%);
+            box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.2), inset 0 -20px 20px -20px rgba(0,0,0,0.2);
+        }
+
+        .ink-underline {
+            background-image: linear-gradient(transparent 90%, #775928 90%);
+            background-size: 100% 100%;
+            transition: all 0.3s ease;
+        }
+
+        .wood-frame {
+            border: 12px solid #353023;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .wood-frame::after {
+            content: '';
+            position: absolute;
+            inset: -12px;
+            border: 2px solid #552c00;
+            pointer-events: none;
+        }
+
+        .typewriter-key {
+            background: #1b1b1c;
+            color: #e5e2e1;
+            border: 1px solid #474746;
+            box-shadow: 0 4px 0 #000;
+            transition: all 0.1s;
+        }
+
+        .typewriter-key:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #000;
+        }
+
+        .brass-accent {
+            border: 2px solid #775928;
+            color: #775928;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7edda;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #775928;
+            border: 3px solid #f7edda;
+            border-radius: 6px;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "surface": "#fff8f0",
+                      "surface-container": "#f7edda",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "inverse-on-surface": "#faf0dd",
+                      "on-primary-fixed": "#2e1500",
+                      "on-error-container": "#93000a",
+                      "secondary": "#775928",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#ffd79b",
+                      "error": "#ba1a1a",
+                      "primary-container": "#704214",
+                      "tertiary-container": "#4e4d4d",
+                      "on-tertiary": "#ffffff",
+                      "surface-tint": "#855324",
+                      "on-primary-fixed-variant": "#693c0e",
+                      "primary-fixed-dim": "#fbb980",
+                      "inverse-surface": "#353023",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed-dim": "#e8c086",
+                      "on-tertiary-container": "#c0bebd",
+                      "outline-variant": "#d6c3b6",
+                      "primary-fixed": "#ffdcc1",
+                      "tertiary-fixed": "#e5e2e1",
+                      "on-error": "#ffffff",
+                      "primary": "#552c00",
+                      "surface-container-highest": "#ebe1cf",
+                      "surface-container-low": "#fdf3df",
+                      "on-secondary-fixed": "#281800",
+                      "on-surface": "#1f1b10",
+                      "on-primary-container": "#f1b179",
+                      "surface-dim": "#e3d9c6",
+                      "secondary-fixed": "#ffdeae",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fff8f0",
+                      "surface-container-high": "#f1e7d4",
+                      "tertiary": "#373636",
+                      "background": "#fff8f0",
+                      "on-secondary-container": "#7a5c2b",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "on-background": "#1f1b10",
+                      "surface-variant": "#ebe1cf",
+                      "outline": "#847469",
+                      "on-tertiary-fixed": "#1b1b1c",
+                      "inverse-primary": "#fbb980",
+                      "on-secondary-fixed-variant": "#5d4213",
+                      "on-surface-variant": "#51443a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "1.5rem",
+                      "margin-page": "4rem",
+                      "sheet-overlap": "-2rem",
+                      "stack-offset": "4px"
+              },
+              "fontFamily": {
+                      "label-md": ["JetBrains Mono"],
+                      "body-sm": ["Courier Prime"],
+                      "headline-lg": ["EB Garamond"],
+                      "headline-lg-mobile": ["EB Garamond"],
+                      "display-lg": ["EB Garamond"],
+                      "body-md": ["Courier Prime"]
+              },
+              "fontSize": {
+                      "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface parchment-texture min-h-screen flex flex-col font-body-md overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-4 h-20 bg-surface dark:bg-surface-container shadow-md border-b-4 border-secondary dark:border-secondary-container">
+<div class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary-fixed-dim tracking-widest">SCRIPTUM</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">ARCHIVE</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">FOLIOS</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">SCRIPTS</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">LEDGER</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl cursor-pointer hover:rotate-12 transition-transform">history_edu</span>
+<div class="w-10 h-10 rounded-full border-2 border-secondary bg-surface-container-high overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a distinguished scholar in a sepia-toned vintage photograph style, wearing spectacles and a velvet waistcoat, set against a background of leather-bound books and soft candlelight. The image has the grainy texture of early 20th-century photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJciJAz3-C5dTCTr4NU3Ai-UKKwTDUXXOL4-JFtYI9K-ABMNZ9S-IOW3dtSdW8pCDUUW_Fc8OoHxJ1U7ZVy3EcES79Cj8GkIn_4Xxtd90hRW2Tu4K691P1W38uKQVKO4FHm2MvYn1ayXYKa2PtuS2cErxK3bgLH6vCnZH_II4pNeS5_n0XcEafe4IKVfQ7ycWYgoqaxhcQFODBHLP0wvbjewn3Mwye_1u-zXiNMmCjTjA3mPG8iiAW12mTtjeIYTv5dd58sc7Znp82"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Hidden on desktop for focused transcript view) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-secondary dark:bg-on-secondary-fixed-variant shadow-xl pt-24 pb-8 hidden lg:flex flex-col z-40">
+<div class="px-6 mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-secondary">Scriptum Archive</h2>
+<p class="text-on-secondary opacity-70 italic">Est. 1924</p>
+</div>
+<nav class="flex-grow space-y-1">
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-md text-label-md">Library</span>
+</a>
+<a class="flex items-center gap-3 bg-surface-container-low text-on-surface mx-2 py-3 px-4 rounded-lg shadow-sm border-l-4 border-primary hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Manuscripts</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">ink_pen</span>
+<span class="font-label-md text-label-md">Inkwell</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Drafts</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-surface py-3 rounded text-primary font-bold shadow-md hover:bg-surface-container-high transition-colors active:scale-95">
+                New Entry
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow pt-24 lg:ml-64 px-gutter md:px-margin-page pb-12">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-[1400px] mx-auto">
+<!-- Left Column: Video & Audio -->
+<div class="space-y-8">
+<!-- Video Player framed in dark wood -->
+<div class="wood-frame aspect-video bg-black rounded-sm overflow-hidden flex items-center justify-center group relative cursor-pointer">
+<img class="w-full h-full object-cover opacity-80" data-alt="A vintage cinematic scene of a professor lecturing in a dimly lit, wood-paneled university hall. The lighting is warm and dramatic, highlighting dust motes in the air. The color palette is rich in mahogany, deep amber, and charcoal blacks, evoking a 1950s academic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkt7cXInFd9sifisBgLocsbH2KkWy0aTXAYlwgEaOHtPiwEYehK6qMc-QScwL738vaqc4k0FhqG2v4VwQlD7xDYrALtubFMTsyRMtteTBdplgu3s5yTuRqL8nfV3iDX3lUOafnqKWeo531QKaWo_QwC5Kdrcu2iElyp23qqzvWZlDceoE3X2iUWLB4rDw8BmsvGuXEKUDZ-CCLVD7zHkKA9VFTyZWoQXwmLf8ExoEyZsCUfpqcDoRU6GWbwlCI_5SSxtmfBAGU6Plp"/>
+<div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-20 h-20 bg-surface/90 rounded-full flex items-center justify-center shadow-2xl border-4 border-secondary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-5xl translate-x-1" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<!-- Audio Waveform on Parchment -->
+<div class="bg-surface-container-low p-6 rounded shadow-lg border-2 border-outline-variant relative overflow-hidden">
+<div class="absolute inset-0 parchment-texture opacity-50 pointer-events-none"></div>
+<div class="flex justify-between items-center mb-4">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-widest">Ink Oscilloscope</span>
+<span class="font-label-md text-label-md text-secondary">03:42 / 12:15</span>
+</div>
+<!-- Mock Waveform -->
+<div class="h-24 flex items-end gap-[2px] px-2">
+<div class="flex-1 bg-secondary opacity-20 h-8"></div>
+<div class="flex-1 bg-secondary opacity-40 h-12"></div>
+<div class="flex-1 bg-secondary opacity-60 h-20"></div>
+<div class="flex-1 bg-secondary opacity-80 h-16"></div>
+<div class="flex-1 bg-primary h-24"></div>
+<div class="flex-1 bg-primary h-14"></div>
+<div class="flex-1 bg-secondary opacity-80 h-18"></div>
+<div class="flex-1 bg-secondary opacity-60 h-22"></div>
+<div class="flex-1 bg-secondary opacity-40 h-10"></div>
+<div class="flex-1 bg-secondary opacity-20 h-6"></div>
+<div class="flex-1 bg-secondary opacity-20 h-10"></div>
+<div class="flex-1 bg-secondary opacity-40 h-16"></div>
+<div class="flex-1 bg-secondary opacity-60 h-24"></div>
+<div class="flex-1 bg-secondary opacity-80 h-20"></div>
+<div class="flex-1 bg-primary h-12"></div>
+<div class="flex-1 bg-primary h-8"></div>
+<div class="flex-1 bg-secondary opacity-80 h-22"></div>
+<div class="flex-1 bg-secondary opacity-60 h-18"></div>
+<div class="flex-1 bg-secondary opacity-40 h-14"></div>
+<div class="flex-1 bg-secondary opacity-20 h-4"></div>
+</div>
+</div>
+<!-- Action Buttons Cluster -->
+<div class="flex flex-wrap gap-4">
+<button class="typewriter-key px-6 py-3 rounded font-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">search</span>
+                        SEARCH ARCHIVE
+                    </button>
+<button class="typewriter-key px-6 py-3 rounded font-label-md flex items-center gap-2 brass-accent">
+<span class="material-symbols-outlined text-lg">download</span>
+                        DOWNLOAD MANUSCRIPT
+                    </button>
+<button class="typewriter-key px-6 py-3 rounded font-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">translate</span>
+                        TRANSLATE
+                    </button>
+<button class="typewriter-key px-6 py-3 rounded font-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">share</span>
+                        SHARE
+                    </button>
+</div>
+</div>
+<!-- Right Column: Transcript Roll -->
+<div class="relative min-h-[600px] flex flex-col">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-4/5 h-8 bg-surface-container-highest rounded-t-xl shadow-inner border-b-4 border-outline z-10"></div>
+<div class="typewriter-roll flex-grow bg-white parchment-texture p-12 shadow-2xl relative overflow-y-auto max-h-[800px] border-x border-outline-variant">
+<div class="max-w-prose mx-auto space-y-12 font-body-md text-on-surface">
+<!-- Paragraph 1 -->
+<div class="group">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-md rounded border border-secondary border-dashed text-[10px] uppercase">Speaker: Alistair</span>
+<span class="text-[10px] text-outline italic">00:00:15</span>
+</div>
+<p class="leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                                The ink used in the late medieval period was not merely a fluid, but a carefully engineered compound of oak galls and iron salts.
+                            </p>
+</div>
+<!-- Paragraph 2 (Active) -->
+<div class="group relative">
+<div class="absolute -left-6 top-1/2 -translate-y-1/2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">arrow_right</span>
+</div>
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-md rounded border border-secondary border-dashed text-[10px] uppercase">Speaker: Eleanor</span>
+<span class="text-[10px] text-primary font-bold italic underline decoration-secondary">00:01:24</span>
+</div>
+<p class="leading-relaxed ink-underline py-1 font-bold">
+                                If we examine the Scriptum folios from the mid-20th century, we see a shift toward synthetic pigments that lack the organic 'bite' of their predecessors.
+                            </p>
+</div>
+<!-- Paragraph 3 -->
+<div class="group">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-md rounded border border-secondary border-dashed text-[10px] uppercase">Speaker: Alistair</span>
+<span class="text-[10px] text-outline italic">00:02:45</span>
+</div>
+<p class="leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                                Precisely. The tactile feedback of the nib against parchment provided a rhythmic focus that modern keyboards struggle to replicate.
+                            </p>
+</div>
+<!-- Paragraph 4 -->
+<div class="group">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container font-label-md rounded border border-secondary border-dashed text-[10px] uppercase">Speaker: Alistair</span>
+<span class="text-[10px] text-outline italic">00:03:12</span>
+</div>
+<p class="leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+                                One must wonder how much the physical act of writing shaped the very philosophy of the texts being produced.
+                            </p>
+</div>
+<!-- Extra padding to simulate continuous roll -->
+<div class="h-40 border-t-2 border-outline-variant border-dashed opacity-20"></div>
+</div>
+</div>
+<!-- Consult the Archive (Ask AI) -->
+<div class="mt-8 relative">
+<div class="bg-surface-container-high border-2 border-secondary p-4 rounded-lg shadow-inner flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary">auto_stories</span>
+<input class="flex-grow bg-transparent border-none focus:ring-0 font-body-md italic placeholder:text-outline" placeholder="Consult the Archive..." type="text"/>
+<button class="bg-secondary text-on-secondary px-4 py-2 rounded-md font-label-md uppercase hover:brightness-110 active:scale-95 transition-all">
+                            Submit
+                        </button>
+</div>
+<div class="absolute -bottom-2 -right-2 bg-secondary w-full h-full -z-10 opacity-10 rounded-lg"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-page flex flex-col items-center gap-4 text-center bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant opacity-60">
+<div class="font-label-md text-label-md font-bold text-on-surface">SCRIPTUM PRESS</div>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant dark:text-on-tertiary-fixed-variant">© MCMXXIV SCRIPTUM PRESS - ALL RIGHTS RESERVED</p>
+<div class="flex gap-6 mt-2">
+<a class="font-body-sm text-body-sm underline decoration-dotted text-on-surface-variant hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">COLOPHON</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">TYPOGRAPHY</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">PRIVACY</a>
+</div>
+</footer>
+<!-- Micro-interaction script -->
+<script>
+        // Subtle scroll parallax for the transcript roll
+        const transcriptContainer = document.querySelector('.typewriter-roll');
+        transcriptContainer.addEventListener('scroll', () => {
+            const opacity = 1 - (transcriptContainer.scrollTop / 2000);
+            // Dynamic fading or interaction logic could go here
+        });
+
+        // Simulating the "ink underline" moving to next paragraphs
+        const paragraphs = document.querySelectorAll('.typewriter-roll p');
+        paragraphs.forEach(p => {
+            p.addEventListener('mouseenter', () => {
+                p.classList.add('ink-underline', 'font-bold');
+            });
+            p.addEventListener('mouseleave', () => {
+                if (!p.closest('.relative').querySelector('.material-symbols-outlined')) {
+                   p.classList.remove('ink-underline', 'font-bold');
+                }
+            });
+        });
+    </script>
+</body></html>

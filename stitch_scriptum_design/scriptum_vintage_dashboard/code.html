@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCRIPTUM - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f0",
+                        "surface-container": "#f7edda",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#faf0dd",
+                        "on-primary-fixed": "#2e1500",
+                        "on-error-container": "#93000a",
+                        "secondary": "#775928",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#ffd79b",
+                        "error": "#ba1a1a",
+                        "primary-container": "#704214",
+                        "tertiary-container": "#4e4d4d",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#855324",
+                        "on-primary-fixed-variant": "#693c0e",
+                        "primary-fixed-dim": "#fbb980",
+                        "inverse-surface": "#353023",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#e8c086",
+                        "on-tertiary-container": "#c0bebd",
+                        "outline-variant": "#d6c3b6",
+                        "primary-fixed": "#ffdcc1",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "primary": "#552c00",
+                        "surface-container-highest": "#ebe1cf",
+                        "surface-container-low": "#fdf3df",
+                        "on-secondary-fixed": "#281800",
+                        "on-surface": "#1f1b10",
+                        "on-primary-container": "#f1b179",
+                        "surface-dim": "#e3d9c6",
+                        "secondary-fixed": "#ffdeae",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fff8f0",
+                        "surface-container-high": "#f1e7d4",
+                        "tertiary": "#373636",
+                        "background": "#fff8f0",
+                        "on-secondary-container": "#7a5c2b",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#1f1b10",
+                        "surface-variant": "#ebe1cf",
+                        "outline": "#847469",
+                        "on-tertiary-fixed": "#1b1b1c",
+                        "inverse-primary": "#fbb980",
+                        "on-secondary-fixed-variant": "#5d4213",
+                        "on-surface-variant": "#51443a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "margin-page": "4rem",
+                        "sheet-overlap": "-2rem",
+                        "stack-offset": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-sm": ["Courier Prime"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-md": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>body {
+    background-color: #3b2f2f;
+    /* Deep Mahogany base */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuB8OH-MYbJrq-wDnRnoWv6e2Nh_FJQ3noAy2KxsW0Cd8DFxcfEEgnT2pQ2wI3vwn4obrSwiwgQCluefjKBGAC0ZO6NB9tVyCzTlIvjoEt0E5KzgS5aJIzZgWtaeKfbYlOzwfQGAKMvXwEaCFOeorxEwVUHQjprW4mCZVjhWFjAWhub_0bXvIwab6H4-HNRv7JTf0BADwxtZnVfxAyBZFXYtvy25_7KhKe2N2-enenJcEOGIsu72sLiJ3LJelRThmCD9kAyTPtuz0UtT);
+    background-size: cover;
+    background-attachment: fixed
+    }
+.paper-texture {
+    background-color: #fff8f0;
+    background-image: url(https://www.transparenttextures.com/patterns/natural-paper.png);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(119, 89, 40, 0.05)
+    }
+.typewriter-key {
+    background: linear-gradient(135deg, #2a2a2a 0%, #111 100%);
+    border: 2px solid #333;
+    box-shadow: 0 4px 0 #000, 0 5px 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s ease
+    }
+.typewriter-key:active {
+    transform: translatey(2px);
+    box-shadow: 0 2px 0 #000, 0 2px 5px rgba(0, 0, 0, 0.5)
+    }
+.brass-accent {
+    border: 1px solid #775928;
+    box-shadow: 0 0 2px #ffdeae, inset 0 0 2px #ffdeae
+    }
+.ink-stamp-completed {
+    color: #1b4d3e;
+    border: 2px solid #1b4d3e;
+    transform: rotate(-15deg);
+    opacity: 0.8;
+    font-family: "JetBrains Mono";
+    padding: 2px 8px;
+    text-transform: uppercase
+    }
+.ink-stamp-pending {
+    color: #775928;
+    border: 2px solid #775928;
+    transform: rotate(5deg);
+    opacity: 0.8;
+    font-family: "JetBrains Mono";
+    padding: 2px 8px;
+    text-transform: uppercase
+    }
+.ink-stamp-failed {
+    color: #ba1a1a;
+    border: 2px solid #ba1a1a;
+    transform: rotate(-3deg);
+    opacity: 0.8;
+    font-family: "JetBrains Mono";
+    padding: 2px 8px;
+    text-transform: uppercase
+    }
+.custom-scrollbar::-webkit-scrollbar {
+    width: 12px
+    }
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #3b2f2f
+    }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #775928;
+    border: 3px solid #3b2f2f;
+    border-radius: 10px
+    }
+.ledger-line {
+    background-image: linear-gradient(#e1d5c3 1px, transparent 1px);
+    background-size: 100% 24px
+    }
+.sheet-stack::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    width: 100%;
+    height: 100%;
+    background: #fff8f0;
+    border: 1px solid #d6c3b6;
+    z-index: -1
+    }
+.sheet-stack::before {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    right: -8px;
+    width: 100%;
+    height: 100%;
+    background: #fff8f0;
+    border: 1px solid #d6c3b6;
+    z-index: -2
+    }</style>
+</head>
+<body class="font-body-md text-on-surface flex min-h-screen">
+<!-- Sidebar: Styled as a Library Cabinet -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-secondary dark:bg-on-secondary-fixed-variant shadow-xl z-50 flex flex-col pt-24 pb-8 transition-transform duration-300" id="sidebar">
+<!-- Logo Placement within Sidebar -->
+<div class="px-6 mb-12 flex flex-col items-center">
+<img alt="Scriptum Logo" class="w-24 h-24 mb-4 brass-accent rounded-full p-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABybkcBXqhdLxZdIyHr-7ktNIFx9RyG0vNZlt_BK6BsJ19nTU1CC_NN4Mkuw5UiqL9WWD4YxwBCjZ6jee884XPzaBezqkNBLuQwEx4o0vPI7OO3_6b4HY5Y5zYmA_OtUthbISx0DDKuLhaSMiuq8IKwl66zYcCE4JEZz6l7RakFK_T12lg80Pwy6DUAVAEU4mwzMCY08shTilqtFt9WYVwxdXxoVrjf9BP8fsPGA3UPdr8ADbnrcVcHo9LOBA3TNAYa-BkaTOSrIdX"/>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-secondary text-center">Scriptum Archive</h2>
+<p class="font-label-md text-label-md text-on-secondary opacity-60">Est. 1924</p>
+</div>
+<nav class="flex-1 space-y-2">
+<!-- Active Item: Library -->
+<div class="flex items-center gap-3 bg-surface-container-low text-on-surface mx-2 py-3 px-4 rounded-lg shadow-sm border-l-4 border-primary cursor-pointer">
+<span class="material-symbols-outlined text-primary">library_books</span>
+<span class="font-label-md text-label-md">Library</span>
+</div>
+<div class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all cursor-pointer">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Manuscripts</span>
+</div>
+<div class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all cursor-pointer">
+<span class="material-symbols-outlined">ink_pen</span>
+<span class="font-label-md text-label-md">Inkwell</span>
+</div>
+<div class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all cursor-pointer">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Drafts</span>
+</div>
+<div class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all cursor-pointer mt-8">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</div>
+</nav>
+<div class="px-4 mt-auto">
+<button class="typewriter-key w-full py-4 rounded-lg text-on-primary font-headline-lg text-xl flex items-center justify-center gap-2 mb-8">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                New Entry
+            </button>
+<div class="flex flex-col gap-2 opacity-60">
+<div class="flex items-center gap-2 px-2 py-1 text-on-secondary font-label-md hover:opacity-100 cursor-pointer">
+<span class="material-symbols-outlined text-sm">help_outline</span>
+                    Help
+                </div>
+<div class="flex items-center gap-2 px-2 py-1 text-on-secondary font-label-md hover:opacity-100 cursor-pointer">
+<span class="material-symbols-outlined text-sm">logout</span>
+                    Exit
+                </div>
+</div>
+</div>
+</aside>
+<!-- Top AppBar -->
+<header class="fixed top-0 right-0 left-64 h-20 bg-surface dark:bg-surface-container flex justify-between items-center px-gutter z-40 border-b-4 border-secondary shadow-md">
+<h1 class="font-headline-lg text-headline-lg uppercase tracking-widest text-primary font-bold">SCRIPTUM</h1>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-6">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">ARCHIVE</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">FOLIOS</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">SCRIPTS</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">LEDGER</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="material-symbols-outlined text-primary cursor-pointer active:translate-y-0.5 hover:text-secondary transition-colors">history_edu</div>
+<div class="w-10 h-10 rounded-full brass-accent bg-surface-container-highest overflow-hidden">
+<img class="w-full h-full object-cover grayscale brightness-75" data-alt="A vintage black and white portrait photo of a classic 1920s writer with a mustache, wearing a tweed vest and a white dress shirt, looking off-camera with intellectual focus. The photo is grainy and has a sepia tone, fitting the historical literary theme of the dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7jBz4eO4CQxv07G0M-ZJaGkn-tciZGiUYpNW5V6pNFHNPhpqRO-I7igblvlbUc7Se4CSp33LutcMbY7ZCz3nKQXYCqSlAIvS-FL0Ywg6lo9XkPXvF4zFT4UcHrNuKhiPNuSDj-zuBfds7mx6-d4PKaq2zMmDcp-YVpiugh3zxwCg0Bzie1eoUILjgwK0twMaCCatTVvlkeWMNSVLCZZ0JrQRf9ibdcKxDenXM3mjL7YnpkF8jCLlNqNm1vKKZ0qKllf92YrjCNz50"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-20 p-margin-page flex-1 custom-scrollbar overflow-y-auto">
+<div class="max-w-[1000px] mx-auto space-y-12">
+<!-- Dashboard Stats Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Stat: Documents Preserved -->
+<div class="paper-texture p-6 sheet-stack relative flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-2">auto_stories</span>
+<h3 class="font-label-md text-label-md text-outline mb-1 uppercase tracking-tighter">Documents Preserved</h3>
+<div class="font-display-lg text-display-lg text-primary">1,428</div>
+<p class="font-body-sm text-body-sm italic mt-2">+12 this week</p>
+</div>
+<!-- Stat: Ink Spent -->
+<div class="paper-texture p-6 sheet-stack relative flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-2">ink_pen</span>
+<h3 class="font-label-md text-label-md text-outline mb-1 uppercase tracking-tighter">Ink Spent (Minutes)</h3>
+<div class="font-display-lg text-display-lg text-primary">8,642</div>
+<p class="font-body-sm text-body-sm italic mt-2">≈ 42 bottles</p>
+</div>
+<!-- Stat: Storage Shelf -->
+<div class="paper-texture p-6 sheet-stack relative flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-4xl mb-2">shelves</span>
+<h3 class="font-label-md text-label-md text-outline mb-1 uppercase tracking-tighter">Storage Shelf</h3>
+<div class="w-full h-4 bg-surface-container rounded-full mt-4 border border-outline-variant relative overflow-hidden">
+<div class="h-full bg-secondary w-3/4 brass-accent"></div>
+</div>
+<div class="font-label-md text-label-md mt-2">74% Capacity</div>
+</div>
+</section>
+<!-- Activity Chart & Featured Entry -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+<section class="lg:col-span-2 paper-texture p-8 sheet-stack relative overflow-hidden">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-lg text-headline-lg text-primary">Weekly Inking Activity</h2>
+<span class="font-body-sm text-body-sm italic opacity-60">October MCMXXIV</span>
+</div>
+<!-- Mock Ledger Chart -->
+<div class="h-64 w-full ledger-line relative border-l-2 border-b-2 border-outline flex items-end px-4">
+<!-- Hand-drawn SVG Path Simulation -->
+<svg class="absolute inset-0 w-full h-full p-4 pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path d="M0,80 L15,70 L30,85 L45,40 L60,50 L75,20 L100,30" fill="none" stroke="#552c00" stroke-dasharray="2,2" stroke-width="2"></path>
+<circle cx="0" cy="80" fill="#552c00" r="1.5"></circle>
+<circle cx="15" cy="70" fill="#552c00" r="1.5"></circle>
+<circle cx="30" cy="85" fill="#552c00" r="1.5"></circle>
+<circle cx="45" cy="40" fill="#552c00" r="1.5"></circle>
+<circle cx="60" cy="50" fill="#552c00" r="1.5"></circle>
+<circle cx="75" cy="20" fill="#552c00" r="1.5"></circle>
+<circle cx="100" cy="30" fill="#552c00" r="1.5"></circle>
+</svg>
+<div class="flex justify-between w-full font-label-md text-[10px] text-outline-variant pt-2 translate-y-6">
+<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+</div>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-primary rounded-full"></span>
+<span class="font-label-md text-label-md">Current Verse</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 border border-primary border-dashed rounded-full"></span>
+<span class="font-label-md text-label-md">Average Cadence</span>
+</div>
+</div>
+</section>
+<div class="space-y-8">
+<!-- Manila Tag / Featured Manuscript -->
+<div class="bg-[#e9dcc9] p-6 shadow-md border-l-[12px] border-secondary relative">
+<div class="absolute -top-4 -right-2 w-12 h-12 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary opacity-40">push_pin</span>
+</div>
+<h3 class="font-label-md text-label-md text-secondary font-bold uppercase mb-4">Urgent Revision</h3>
+<p class="font-body-md text-body-md italic leading-relaxed text-on-surface-variant">
+                            "The clock struck thirteen as he walked through the heavy wooden gates of the archive, the smell of damp earth and old leather meeting him halfway..."
+                        </p>
+<hr class="my-4 border-outline-variant border-dashed"/>
+<div class="flex justify-between items-center">
+<span class="font-label-md text-[10px]">Folio #204</span>
+<button class="text-primary font-bold font-label-md hover:underline decoration-dotted">Open Case</button>
+</div>
+</div>
+<!-- Library Log -->
+<div class="paper-texture p-4 sheet-stack relative">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-secondary text-lg">history</span>
+<span class="font-label-md text-label-md font-bold uppercase">Recent Actions</span>
+</div>
+<ul class="space-y-3 font-body-sm text-body-sm">
+<li class="flex justify-between opacity-80">
+<span>Refilled Inkwell</span>
+<span class="italic text-[10px]">10m ago</span>
+</li>
+<li class="flex justify-between opacity-80">
+<span>Archived "Paris Night"</span>
+<span class="italic text-[10px]">2h ago</span>
+</li>
+<li class="flex justify-between opacity-80">
+<span>Corrected Typesetting</span>
+<span class="italic text-[10px]">6h ago</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Recent Manuscripts Table -->
+<section class="paper-texture p-8 sheet-stack relative">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-8">Recent Manuscripts</h2>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md">
+<thead>
+<tr class="border-b-2 border-primary text-secondary font-label-md uppercase tracking-widest text-[11px]">
+<th class="pb-4 px-2">Catalog ID</th>
+<th class="pb-4 px-2">Title</th>
+<th class="pb-4 px-2">Technique</th>
+<th class="pb-4 px-2">Word Count</th>
+<th class="pb-4 px-2 text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant divide-dashed">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-2 font-label-md opacity-60">MS-1042</td>
+<td class="py-4 px-2 font-bold group-hover:text-primary">The Raven's Quill</td>
+<td class="py-4 px-2 italic text-on-surface-variant">Copperplate</td>
+<td class="py-4 px-2">4,200</td>
+<td class="py-4 px-2 text-right">
+<span class="ink-stamp-completed inline-block">COMPLETED</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-2 font-label-md opacity-60">MS-1045</td>
+<td class="py-4 px-2 font-bold group-hover:text-primary">Autumn in Vienna</td>
+<td class="py-4 px-2 italic text-on-surface-variant">Standard 10pt</td>
+<td class="py-4 px-2">1,530</td>
+<td class="py-4 px-2 text-right">
+<span class="ink-stamp-pending inline-block">IN INK</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-2 font-label-md opacity-60">MS-1046</td>
+<td class="py-4 px-2 font-bold group-hover:text-primary">Lost Letters of MCMX</td>
+<td class="py-4 px-2 italic text-on-surface-variant">Scribble</td>
+<td class="py-4 px-2">840</td>
+<td class="py-4 px-2 text-right">
+<span class="ink-stamp-failed inline-block">FAILED</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-8 text-center">
+<button class="font-label-md text-secondary hover:text-primary transition-colors flex items-center justify-center gap-2 mx-auto uppercase tracking-widest text-xs border-b border-secondary pb-1">
+                        View Entire Registry
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-page flex flex-col items-center gap-4 text-center mt-24 border-t border-outline-variant opacity-60">
+<div class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest">Scriptum Press</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500 underline decoration-dotted" href="#">COLOPHON</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">TYPOGRAPHY</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">PRIVACY</a>
+</div>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant">© MCMXXIV SCRIPTUM PRESS - ALL RIGHTS RESERVED</p>
+</footer>
+</main>
+<!-- Background texture and overlay scripts -->
+<script>
+        // Micro-interaction for typewriter effect
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                const clickSound = new Audio('https://www.soundjay.com/mechanical/typewriter-key-1.mp3');
+                clickSound.volume = 0.2;
+                // clickSound.play().catch(() => {}); // Commented out to avoid sound issues in preview
+            });
+        });
+
+        // Atmospheric parallax on the desk texture
+        document.addEventListener('mousemove', (e) => {
+            const desk = document.body;
+            const x = (window.innerWidth - e.pageX * 0.1) / 100;
+            const y = (window.innerHeight - e.pageY * 0.1) / 100;
+            desk.style.backgroundPosition = `calc(50% + ${x}px) calc(50% + ${y}px)`;
+        });
+    </script>
+</body></html>

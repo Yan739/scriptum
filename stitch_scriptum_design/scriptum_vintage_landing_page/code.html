@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCRIPTUM - Every Word Deserves to Be Preserved</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#ffffff",
+                    "surface": "#fff8f0",
+                    "surface-container": "#f7edda",
+                    "on-tertiary-fixed-variant": "#474746",
+                    "inverse-on-surface": "#faf0dd",
+                    "on-primary-fixed": "#2e1500",
+                    "on-error-container": "#93000a",
+                    "secondary": "#775928",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#ffd79b",
+                    "error": "#ba1a1a",
+                    "primary-container": "#704214",
+                    "tertiary-container": "#4e4d4d",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#855324",
+                    "on-primary-fixed-variant": "#693c0e",
+                    "primary-fixed-dim": "#fbb980",
+                    "inverse-surface": "#353023",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#e8c086",
+                    "on-tertiary-container": "#c0bebd",
+                    "outline-variant": "#d6c3b6",
+                    "primary-fixed": "#ffdcc1",
+                    "tertiary-fixed": "#e5e2e1",
+                    "on-error": "#ffffff",
+                    "primary": "#552c00",
+                    "surface-container-highest": "#ebe1cf",
+                    "surface-container-low": "#fdf3df",
+                    "on-secondary-fixed": "#281800",
+                    "on-surface": "#1f1b10",
+                    "on-primary-container": "#f1b179",
+                    "surface-dim": "#e3d9c6",
+                    "secondary-fixed": "#ffdeae",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff8f0",
+                    "surface-container-high": "#f1e7d4",
+                    "tertiary": "#373636",
+                    "background": "#fff8f0",
+                    "on-secondary-container": "#7a5c2b",
+                    "tertiary-fixed-dim": "#c8c6c5",
+                    "on-background": "#1f1b10",
+                    "surface-variant": "#ebe1cf",
+                    "outline": "#847469",
+                    "on-tertiary-fixed": "#1b1b1c",
+                    "inverse-primary": "#fbb980",
+                    "on-secondary-fixed-variant": "#5d4213",
+                    "on-surface-variant": "#51443a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "1.5rem",
+                    "margin-page": "4rem",
+                    "sheet-overlap": "-2rem",
+                    "stack-offset": "4px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "body-sm": ["Courier Prime"],
+                    "headline-lg": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "display-lg": ["EB Garamond"],
+                    "body-md": ["Courier Prime"]
+            },
+            "fontSize": {
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fff8f0;
+            background-image: url("https://www.transparenttextures.com/patterns/parchment.png");
+            scroll-behavior: smooth;
+        }
+        .typewriter-key {
+            box-shadow: 0 4px 0 #3a2e1d, 0 8px 15px rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+        }
+        .typewriter-key:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 #3a2e1d, 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .brass-rim {
+            border: 2px solid #775928;
+            position: relative;
+        }
+        .brass-rim::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border: 1px solid #775928;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .sheet-stack {
+            box-shadow: 
+                0 1px 1px rgba(0,0,0,0.1),
+                0 4px 0 -1px #fff8f0,
+                0 4px 1px -1px rgba(0,0,0,0.1),
+                0 8px 0 -2px #fff8f0,
+                0 8px 1px -2px rgba(0,0,0,0.1);
+        }
+        .ink-bleed {
+            filter: blur(0.2px) contrast(1.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 12px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f7edda;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #775928;
+            border: 3px solid #f7edda;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface custom-scrollbar selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-6 md:px-margin-page py-4 h-20 bg-surface dark:bg-surface-container shadow-md border-b-4 border-secondary dark:border-secondary-container">
+<div class="flex items-center gap-4">
+<img alt="Scriptum Logo" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABybkcBXqhdLxZdIyHr-7ktNIFx9RyG0vNZlt_BK6BsJ19nTU1CC_NN4Mkuw5UiqL9WWD4YxwBCjZ6jee884XPzaBezqkNBLuQwEx4o0vPI7OO3_6b4HY5Y5zYmA_OtUthbISx0DDKuLhaSMiuq8IKwl66zYcCE4JEZz6l7RakFK_T12lg80Pwy6DUAVAEU4mwzMCY08shTilqtFt9WYVwxdXxoVrjf9BP8fsPGA3UPdr8ADbnrcVcHo9LOBA3TNAYa-BkaTOSrIdX"/>
+<span class="font-headline-lg text-headline-lg uppercase tracking-widest font-bold text-primary dark:text-primary-fixed-dim">SCRIPTUM</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">ARCHIVE</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">FOLIOS</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">SCRIPTS</a>
+<a class="text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300 cursor-pointer active:translate-y-0.5" href="#">LEDGER</a>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<a class="font-label-md text-label-md text-primary font-bold hover:text-secondary transition-colors" href="#">LOGIN</a>
+<a class="px-4 py-2 bg-primary text-on-primary font-label-md text-label-md rounded shadow-sm hover:bg-secondary transition-all" href="#">GET STARTED</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:text-secondary transition-colors">history_edu</span>
+<button class="md:hidden material-symbols-outlined text-primary">menu</button>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-12 px-gutter">
+<div class="absolute inset-0 z-0 overflow-hidden">
+<div class="w-full h-full opacity-40 mix-blend-multiply transition-transform duration-1000 scale-105 hover:scale-100">
+<img alt="Vintage Writer's Office Background" class="w-full h-full object-cover grayscale-[0.2]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLMGEDiknJbA-3PCS-iR3zxpqpBCzl6CTRKOLmN13Dcxu9c557rYCEEJeOfo5OTEPsJBMQtK4GV0P_jLDccQigNgYudKxDMyJKT-4sNA5hkAnzhfOd2Oe0eGtKVzA3JTqjx9Y8W-LjinaGkEcD05xyYYQsKkpBXNwQlhW0lyuFEvLaBZEp1Iu4_sfRM7MvH1BB4HYMN5CEJN25n-RzHFgT-Tb9nqA848BayxdtLWtZm3OGBf4se2k2YqVazcJW4eo9JrWqy6p4WTTx"/>
+</div>
+</div>
+<div class="relative z-10 max-w-[900px] w-full text-center flex flex-col items-center">
+<!-- Decorative Ornament -->
+<div class="mb-8 opacity-60">
+<span class="material-symbols-outlined text-[48px] text-secondary">ink_pen</span>
+</div>
+<h1 class="font-display-lg text-display-lg md:text-[64px] text-primary mb-6 leading-tight ink-bleed">
+                    Every Word Deserves to Be Preserved.
+                </h1>
+<p class="font-headline-lg text-headline-lg md:text-headline-lg italic text-on-surface-variant mb-12 max-w-2xl">
+                    Transform your recordings into beautifully written documents and translate them into any language.
+                </p>
+<div class="flex flex-col sm:flex-row gap-8 items-center">
+<button class="typewriter-key brass-rim bg-surface-container px-8 py-4 rounded-lg flex items-center gap-3 group">
+<span class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform">add_notes</span>
+<span class="font-label-md text-label-md text-primary tracking-widest font-bold">NEW ENTRY</span>
+</button>
+<button class="typewriter-key bg-on-surface text-surface-container px-8 py-4 rounded-lg flex items-center gap-3 group">
+<span class="material-symbols-outlined text-surface-container group-hover:-translate-x-1 transition-transform">menu_book</span>
+<span class="font-label-md text-label-md tracking-widest font-bold">VIEW MANUSCRIPTS</span>
+</button>
+</div>
+</div>
+<!-- Floating Elements -->
+<div class="absolute bottom-12 left-12 hidden lg:block opacity-30 -rotate-6">
+<div class="sheet-stack bg-surface-container p-4 w-48 h-64 border border-outline-variant">
+<div class="h-2 w-3/4 bg-outline-variant mb-2"></div>
+<div class="h-2 w-full bg-outline-variant opacity-50 mb-2"></div>
+<div class="h-2 w-5/6 bg-outline-variant opacity-50"></div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-24 px-gutter md:px-margin-page bg-[#2d2419] relative">
+<!-- Wood Texture Overlay -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');"></div>
+<div class="max-w-[1000px] mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Feature Card 1 -->
+<div class="sheet-stack bg-[#fffcf5] p-8 -rotate-1 hover:rotate-0 transition-transform duration-500 border border-outline-variant relative">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-on-tertiary-fixed-variant rounded-full shadow-lg flex items-center justify-center border-2 border-secondary">
+<div class="w-1 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">mic</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Analog Capture</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Speak your thoughts into existence. Our vintage-tuned audio engine captures every nuance of your voice with high-fidelity precision.
+                        </p>
+<div class="mt-8 border-t border-outline-variant pt-4 italic font-body-sm text-body-sm text-secondary opacity-60">
+                            "The modern scribe's companion."
+                        </div>
+</div>
+<!-- Feature Card 2 -->
+<div class="sheet-stack bg-[#fffcf5] p-8 rotate-1 hover:rotate-0 transition-transform duration-500 border border-outline-variant relative">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-on-tertiary-fixed-variant rounded-full shadow-lg flex items-center justify-center border-2 border-secondary">
+<div class="w-1 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">translate</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Universal Folio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Instantly translate your manuscripts into over 100 languages while maintaining the original tone and literary elegance of your work.
+                        </p>
+<div class="mt-8 border-t border-outline-variant pt-4 italic font-body-sm text-body-sm text-secondary opacity-60">
+                            "A bridge across cultures."
+                        </div>
+</div>
+<!-- Feature Card 3 -->
+<div class="sheet-stack bg-[#fffcf5] p-8 -rotate-2 hover:rotate-0 transition-transform duration-500 border border-outline-variant relative">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-on-tertiary-fixed-variant rounded-full shadow-lg flex items-center justify-center border-2 border-secondary">
+<div class="w-1 h-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">auto_stories</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-4">Ink Preservation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                            Your documents are stored in a digital vault that mimics physical parchment, ensuring your words remain legible for a lifetime.
+                        </p>
+<div class="mt-8 border-t border-outline-variant pt-4 italic font-body-sm text-body-sm text-secondary opacity-60">
+                            "Time-tested durability."
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Quote / Atmosphere Section -->
+<section class="py-32 px-gutter bg-surface flex flex-col items-center justify-center text-center">
+<div class="max-w-xl">
+<span class="material-symbols-outlined text-6xl text-outline-variant mb-8 opacity-30">format_quote</span>
+<blockquote class="font-headline-lg text-headline-lg italic text-on-surface leading-relaxed mb-8">
+                    "Writing is an act of preservation. In a world of fleeting digital whispers, Scriptum offers the weight of ink and the permanence of paper."
+                </blockquote>
+<div class="flex items-center justify-center gap-4">
+<div class="w-12 h-px bg-outline-variant"></div>
+<cite class="font-label-md text-label-md uppercase tracking-[0.2em] text-secondary">The Archive Society</cite>
+<div class="w-12 h-px bg-outline-variant"></div>
+</div>
+</div>
+</section>
+<!-- Final CTA Section -->
+<section class="relative py-24 bg-surface-container overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-outline-variant opacity-20"></div>
+<div class="container mx-auto px-gutter text-center relative z-10">
+<h2 class="font-display-lg text-display-lg text-primary mb-12">Commence Your Ledger Today</h2>
+<div class="flex flex-col items-center gap-6">
+<a class="typewriter-key brass-rim bg-on-surface text-surface py-5 px-12 rounded-lg font-label-md text-label-md tracking-widest font-bold inline-block hover:scale-105 transition-transform" href="#">
+                        CREATE AN ACCOUNT
+                    </a>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">No subscription required for the initial five folios.</p>
+</div>
+</div>
+<!-- Decorative corner illustrations -->
+<div class="absolute bottom-0 right-0 p-8 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">check_small</span>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-page flex flex-col items-center gap-6 text-center bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant opacity-90 transition-opacity duration-500">
+<div class="flex items-center gap-3">
+<img alt="Scriptum Mini Logo" class="h-8 w-8 grayscale opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABybkcBXqhdLxZdIyHr-7ktNIFx9RyG0vNZlt_BK6BsJ19nTU1CC_NN4Mkuw5UiqL9WWD4YxwBCjZ6jee884XPzaBezqkNBLuQwEx4o0vPI7OO3_6b4HY5Y5zYmA_OtUthbISx0DDKuLhaSMiuq8IKwl66zYcCE4JEZz6l7RakFK_T12lg80Pwy6DUAVAEU4mwzMCY08shTilqtFt9WYVwxdXxoVrjf9BP8fsPGA3UPdr8ADbnrcVcHo9LOBA3TNAYa-BkaTOSrIdX"/>
+<span class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest">Scriptum Press</span>
+</div>
+<nav class="flex gap-8 justify-center flex-wrap">
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 hover:underline decoration-dotted transition-all" href="#">COLOPHON</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 hover:underline decoration-dotted transition-all" href="#">TYPOGRAPHY</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 hover:underline decoration-dotted transition-all" href="#">PRIVACY</a>
+</nav>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant opacity-60">
+            © MCMXXIV SCRIPTUM PRESS - ALL RIGHTS RESERVED
+        </p>
+<div class="mt-4 flex gap-4">
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">share</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center text-on-surface-variant hover:bg-secondary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-sm">mail</span>
+</button>
+</div>
+</footer>
+<!-- Atmosphere Script -->
+<script>
+        // Subtle parallax and interaction effects
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            
+            // Apply subtle drift to background or decorative elements
+            const heroBg = document.querySelector('.hero-parallax');
+            if(heroBg) heroBg.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+
+        // Log typing interaction for "Tactile" feel
+        const buttons = document.querySelectorAll('.typewriter-key');
+        buttons.forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                // Potential audio play here for a "click" sound
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SCRIPTUM - New Transcription</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "surface": "#fff8f0",
+                        "surface-container": "#f7edda",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "inverse-on-surface": "#faf0dd",
+                        "on-primary-fixed": "#2e1500",
+                        "on-error-container": "#93000a",
+                        "secondary": "#775928",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#ffd79b",
+                        "error": "#ba1a1a",
+                        "primary-container": "#704214",
+                        "tertiary-container": "#4e4d4d",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#855324",
+                        "on-primary-fixed-variant": "#693c0e",
+                        "primary-fixed-dim": "#fbb980",
+                        "inverse-surface": "#353023",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#e8c086",
+                        "on-tertiary-container": "#c0bebd",
+                        "outline-variant": "#d6c3b6",
+                        "primary-fixed": "#ffdcc1",
+                        "tertiary-fixed": "#e5e2e1",
+                        "on-error": "#ffffff",
+                        "primary": "#552c00",
+                        "surface-container-highest": "#ebe1cf",
+                        "surface-container-low": "#fdf3df",
+                        "on-secondary-fixed": "#281800",
+                        "on-surface": "#1f1b10",
+                        "on-primary-container": "#f1b179",
+                        "surface-dim": "#e3d9c6",
+                        "secondary-fixed": "#ffdeae",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-bright": "#fff8f0",
+                        "surface-container-high": "#f1e7d4",
+                        "tertiary": "#373636",
+                        "background": "#fff8f0",
+                        "on-secondary-container": "#7a5c2b",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#1f1b10",
+                        "surface-variant": "#ebe1cf",
+                        "outline": "#847469",
+                        "on-tertiary-fixed": "#1b1b1c",
+                        "inverse-primary": "#fbb980",
+                        "on-secondary-fixed-variant": "#5d4213",
+                        "on-surface-variant": "#51443a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "1.5rem",
+                        "margin-page": "4rem",
+                        "sheet-overlap": "-2rem",
+                        "stack-offset": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-sm": ["Courier Prime"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "display-lg": ["EB Garamond"],
+                        "body-md": ["Courier Prime"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .parchment-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+            background-color: #fffdfa;
+        }
+        
+        .typewriter-cursor {
+            border-right: 2px solid #552c00;
+            animation: blink 0.8s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #552c00 }
+        }
+
+        .brass-panel {
+            background: linear-gradient(145deg, #775928, #5d4213);
+            box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.2), inset -2px -2px 5px rgba(0,0,0,0.4), 4px 4px 10px rgba(0,0,0,0.3);
+            border: 1px solid #855324;
+        }
+
+        .wax-seal {
+            background: #ba1a1a;
+            mask-image: radial-gradient(circle at center, transparent 30%, black 100%);
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .wax-seal:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .wax-seal:active {
+            transform: scale(0.95);
+        }
+
+        .typewriter-key {
+            background: #1b1b1c;
+            color: #ffdcc1;
+            box-shadow: 0 4px 0 #000, 0 6px 10px rgba(0,0,0,0.5);
+            transition: all 0.1s;
+        }
+
+        .typewriter-key:active {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 #000, 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .sheet-entry {
+            animation: slideIn 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .brass-knob {
+            width: 48px;
+            height: 48px;
+            background: radial-gradient(circle at 30% 30%, #e8c086, #775928);
+            border-radius: 50%;
+            border: 2px solid #5d4213;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f7edda;
+            border-left: 1px solid #d6c3b6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #775928;
+            border: 2px solid #f7edda;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-4 h-20 bg-surface dark:bg-surface-container border-b-4 border-secondary shadow-md">
+<div class="flex items-center gap-8">
+<h1 class="font-headline-lg text-headline-lg font-bold text-primary tracking-widest">SCRIPTUM</h1>
+<nav class="hidden md:flex gap-6">
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">ARCHIVE</a>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">FOLIOS</a>
+<a class="font-label-md text-label-md text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-300" href="#">SCRIPTS</a>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-secondary transition-colors duration-300" href="#">LEDGER</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer active:translate-y-0.5" style="font-variation-settings: 'FILL' 1;">history_edu</span>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="fixed left-0 top-0 h-full flex flex-col pt-24 pb-8 bg-secondary dark:bg-on-secondary-fixed-variant shadow-[inset_-10px_0_15px_rgba(0,0,0,0.2)] w-64 z-40 hidden md:flex">
+<div class="px-6 mb-8">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-secondary">Scriptum Archive</h2>
+<p class="font-label-md text-label-md text-on-secondary opacity-70">Est. 1924</p>
+</div>
+<div class="flex flex-col gap-1 flex-grow">
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">library_books</span>
+<span class="font-label-md text-label-md">Library</span>
+</a>
+<a class="flex items-center gap-3 bg-surface-container-low text-on-surface mx-2 py-3 px-4 rounded-lg shadow-sm border-l-4 border-primary hover:translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Manuscripts</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">ink_pen</span>
+<span class="font-label-md text-label-md">Inkwell</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Drafts</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary-container opacity-80 mx-2 py-3 px-4 hover:bg-secondary-container hover:text-on-secondary-container transition-all hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<div class="mt-auto px-4 flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-secondary opacity-80 py-2 px-2 hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+<a class="flex items-center gap-3 text-on-secondary opacity-80 py-2 px-2 hover:text-on-primary transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Exit</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:pl-64 pt-20 min-h-screen flex flex-col items-center justify-center p-8 overflow-hidden">
+<div class="max-w-[1000px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Typewriter Sheet Area (Parchment) -->
+<div class="lg:col-span-8 relative">
+<!-- Typewriter Slot Mechanism -->
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 w-[105%] h-8 bg-zinc-800 rounded-t-lg border-b-2 border-zinc-900 shadow-xl z-10"></div>
+<div class="parchment-texture sheet-entry p-12 md:p-16 min-h-[700px] shadow-2xl border border-outline-variant relative overflow-hidden flex flex-col">
+<!-- Subtle Ink Lines -->
+<div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: linear-gradient(#51443a 1px, transparent 1px); background-size: 100% 32px;"></div>
+<!-- Content Canvas -->
+<div class="relative z-20 flex flex-col items-center justify-center flex-grow">
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-12 w-full text-center hover:bg-surface-container-low transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-6xl text-primary opacity-40 mb-4 group-hover:scale-110 transition-transform">cloud_upload</span>
+<h3 class="font-headline-lg text-headline-lg text-primary mb-2">Feed Document</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mx-auto">Drop your audio or text fragment here to begin the mechanical transcription process.</p>
+<input class="hidden" id="fileInput" type="file"/>
+</div>
+<div class="mt-12 w-full">
+<div class="flex items-center gap-2 font-body-md text-body-md text-primary opacity-60">
+<span class="material-symbols-outlined">history_edu</span>
+<span class="typewriter-cursor">Awaiting the strike of the first key...</span>
+</div>
+</div>
+</div>
+<!-- Page Footer Decor -->
+<div class="absolute bottom-8 right-8 font-label-md text-label-md text-on-surface-variant italic opacity-40">
+                        Folio No. 8421
+                    </div>
+</div>
+<!-- Stacked Paper Effect -->
+<div class="absolute inset-0 parchment-texture -z-10 translate-x-1 translate-y-1 border border-outline-variant opacity-80"></div>
+<div class="absolute inset-0 parchment-texture -z-20 translate-x-2 translate-y-2 border border-outline-variant opacity-60"></div>
+</div>
+<!-- Configuration Panel (Brass Control) -->
+<div class="lg:col-span-4 flex flex-col gap-8">
+<div class="brass-panel rounded-lg p-6 flex flex-col gap-8">
+<h2 class="font-label-md text-label-md text-on-secondary uppercase tracking-[0.2em] font-bold border-b border-on-secondary/20 pb-2">Mechanical Config</h2>
+<!-- Source Language -->
+<div class="flex flex-col gap-4">
+<label class="font-label-md text-label-md text-on-secondary/80">SOURCE DIALECT</label>
+<div class="flex items-center justify-between">
+<div class="brass-knob flex items-center justify-center cursor-pointer transition-transform hover:rotate-45" id="knob1">
+<div class="w-1 h-3 bg-secondary-fixed absolute top-1"></div>
+</div>
+<span class="font-body-md text-body-md text-on-secondary italic">English (Modern)</span>
+</div>
+</div>
+<!-- Target Language -->
+<div class="flex flex-col gap-4">
+<label class="font-label-md text-label-md text-on-secondary/80">TARGET SCRIPT</label>
+<div class="flex items-center justify-between">
+<div class="brass-knob flex items-center justify-center cursor-pointer transition-transform hover:-rotate-12" id="knob2">
+<div class="w-1 h-3 bg-secondary-fixed absolute top-1"></div>
+</div>
+<span class="font-body-md text-body-md text-on-secondary italic">Latin (Classical)</span>
+</div>
+</div>
+<!-- Export Seals -->
+<div class="flex flex-col gap-4 mt-4">
+<label class="font-label-md text-label-md text-on-secondary/80">AUTHENTICATION SEALS</label>
+<div class="grid grid-cols-4 gap-2">
+<div class="flex flex-col items-center gap-1">
+<div class="wax-seal w-12 h-12 rounded-full flex items-center justify-center text-white text-[10px] font-bold">SRT</div>
+<span class="text-[10px] text-on-secondary/60">SUBTITLES</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="wax-seal w-12 h-12 rounded-full flex items-center justify-center text-white text-[10px] font-bold">PDF</div>
+<span class="text-[10px] text-on-secondary/60">ARCHIVE</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="wax-seal w-12 h-12 rounded-full flex items-center justify-center text-white text-[10px] font-bold">DOCX</div>
+<span class="text-[10px] text-on-secondary/60">SCRIPT</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="wax-seal w-12 h-12 rounded-full flex items-center justify-center text-white text-[10px] font-bold">TXT</div>
+<span class="text-[10px] text-on-secondary/60">RAW</span>
+</div>
+</div>
+</div>
+<!-- Main Action Button -->
+<div class="mt-4 pt-6 border-t border-on-secondary/20 flex flex-col items-center gap-6">
+<button class="typewriter-key w-24 h-24 rounded-full flex flex-col items-center justify-center gap-1 uppercase font-label-md text-label-md border-[3px] border-primary-fixed-dim">
+<span class="material-symbols-outlined text-3xl">play_arrow</span>
+<span>Begin</span>
+</button>
+<p class="font-body-sm text-body-sm text-on-secondary/60 text-center italic">"The ink flows only when the keys are struck."</p>
+</div>
+</div>
+<!-- Auxiliary Information Card -->
+<div class="bg-surface-container-high border border-outline-variant p-6 rounded-lg shadow-sm">
+<h4 class="font-label-md text-label-md text-primary font-bold mb-3">SYSTEM STATUS</h4>
+<ul class="flex flex-col gap-2 font-body-sm text-body-sm text-on-surface-variant">
+<li class="flex justify-between items-center">
+<span>Ink Reservoir:</span>
+<span class="text-secondary font-bold">84%</span>
+</li>
+<li class="flex justify-between items-center">
+<span>Platen Tension:</span>
+<span class="text-secondary font-bold">OPTIMAL</span>
+</li>
+<li class="flex justify-between items-center">
+<span>Relay Speed:</span>
+<span class="text-secondary font-bold">240 WPM</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-12 px-margin-page flex flex-col items-center gap-4 text-center bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant opacity-60">
+<p class="font-label-md text-label-md font-bold text-on-surface uppercase tracking-widest">SCRIPTUM PRESS</p>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500 underline decoration-dotted" href="#">COLOPHON</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">TYPOGRAPHY</a>
+<a class="font-body-sm text-body-sm italic text-on-surface-variant opacity-70 hover:text-primary hover:opacity-100 transition-opacity duration-500" href="#">PRIVACY</a>
+</div>
+<p class="font-body-sm text-body-sm italic text-on-surface-variant mt-4">© MCMXXIV SCRIPTUM PRESS - ALL RIGHTS RESERVED</p>
+</footer>
+<!-- Atmosphere / Micro-interactions Script -->
+<script>
+        // Knob Rotation Interaction
+        const knobs = [document.getElementById('knob1'), document.getElementById('knob2')];
+        knobs.forEach(knob => {
+            let rotation = 0;
+            knob.addEventListener('click', () => {
+                rotation += 45;
+                knob.style.transform = `rotate(${rotation}deg)`;
+            });
+        });
+
+        // Typewriter Sound Effect (Optional visual cue)
+        const beginBtn = document.querySelector('.typewriter-key');
+        beginBtn.addEventListener('click', () => {
+            // Flash sheet to simulate feeding
+            const sheet = document.querySelector('.sheet-entry');
+            sheet.style.transition = 'transform 0.5s ease-in-out';
+            sheet.style.transform = 'translateY(-20px)';
+            setTimeout(() => {
+                sheet.style.transform = 'translateY(0)';
+            }, 500);
+        });
+
+        // File drop visual feedback
+        const dropZone = document.querySelector('.group');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+
+        dropZone.addEventListener('dragover', () => {
+            dropZone.classList.add('bg-secondary-container/20');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('bg-secondary-container/20');
+        });
+
+        dropZone.addEventListener('drop', () => {
+            dropZone.classList.remove('bg-secondary-container/20');
+            // Mock file insertion
+            const cursorText = document.querySelector('.typewriter-cursor');
+            cursorText.innerText = 'Document fed. Strike BEGIN to transcribe...';
+        });
+    </script>
+</body></html>
