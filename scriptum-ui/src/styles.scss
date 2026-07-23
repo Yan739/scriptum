@@ -1,1 +1,68 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.parchment-texture {
+  background-image: url("https://www.transparenttextures.com/patterns/handmade-paper.png");
+  background-color: #fff8f0;
+}
+
+.typewriter-roll {
+  background: linear-gradient(to right, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 5%, rgba(0,0,0,0) 95%, rgba(0,0,0,0.05) 100%);
+  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.2), inset 0 -20px 20px -20px rgba(0,0,0,0.2);
+}
+
+.ink-underline {
+  background-image: linear-gradient(transparent 90%, #775928 90%);
+  background-size: 100% 100%;
+  transition: all 0.3s ease;
+}
+
+.wood-frame {
+  border: 12px solid #353023;
+  box-shadow: inset 0 0 15px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.wood-frame::after {
+  content: '';
+  position: absolute;
+  inset: -12px;
+  border: 2px solid #552c00;
+  pointer-events: none;
+}
+
+.typewriter-key {
+  background: #1b1b1c;
+  color: #e5e2e1;
+  border: 1px solid #474746;
+  box-shadow: 0 4px 0 #000;
+  transition: all 0.1s;
+}
+
+.typewriter-key:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #000;
+}
+
+.brass-accent {
+  border: 2px solid #775928;
+  color: #775928;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f7edda;
+}
+::-webkit-scrollbar-thumb {
+  background: #775928;
+  border: 3px solid #f7edda;
+  border-radius: 6px;
+}
